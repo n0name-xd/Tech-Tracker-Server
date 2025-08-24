@@ -1,0 +1,47 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Временные и собранные файлы
+bin/
+obj/
+
+# Файлы конфигурации и настроек
+*.runtimeconfig.json
+*.pdb
+*.dll
+*.exe
+*.vscode/
+
+# Каталоги IDE
+/.vs/
+/.vscode/
+.idea/
+
+# Логи
+*.log
+
+# NuGet
+*.nupkg
+.nuget/
+
+# Файлы публикации/сборки
+*.publishsettings
+*.publishproj
+
+# Файлы кэша, временные файлы
+*.cache
+*.json (если не хотите коммитить локальные конфигурации)
+*.build
+
+# Другие системные файлы
+Thumbs.db
+Desktop.ini
+*.bak
+
+# Файлы, связанные с GitHub Actions или CI/CD 
+.github/
+.gitlab-ci.yml
