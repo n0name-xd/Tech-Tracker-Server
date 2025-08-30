@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: tech_tracker_postgers
+    image: postgres:16.1
+    ports:
+      - "5438:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=tech_tracker_db
+    
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:

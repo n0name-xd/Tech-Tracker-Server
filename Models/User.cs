@@ -2,23 +2,18 @@
 {
     public class User
     {
-        private string _userName;
         private Roles _role;
         private string _userphone;
 
         public User(string userName, Roles role, string userPhone)
         {
-            _userName = userName;
+            UserName = userName;
             _role = role;
             _userphone = userPhone;
         }
 
-        public int? Id { get; set; }
-        public string UserName 
-        { 
-            get => _userName;
-            private set => _userName = value;
-        }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public string UserName { get; set; }
         public string? UserPassword { get; set; } = string.Empty;
         public string UserPhone 
         {
@@ -30,6 +25,6 @@
         { 
             get => _role;
             private set => _role = value; 
-        } 
+        }
     }
 }
