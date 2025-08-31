@@ -6,8 +6,10 @@
 
         public string Name { get; set; }
 
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
-        public string VehicleType { get; set; }
+        public string VehicleType { get; set; } = string.Empty;
+
+        public string CompanyId { get; set; } = string.Empty;
     }
 }

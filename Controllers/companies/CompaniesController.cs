@@ -23,7 +23,10 @@ namespace tech_tracker_server.Controllers.companies
         [SwaggerOperation(Summary = "Getting a list of companies", Description = "")]
         public ActionResult<List<Company>> Get()
         {
-            var companyes = _context.Companyes.Include(c => c.Owner).ToList();
+            var companyes = _context.Companyes
+                .Include(c => c.Owner)
+                .Include(c => c.Vehicles)
+                .ToList();
 
             return Ok(companyes);
         }
@@ -31,7 +34,7 @@ namespace tech_tracker_server.Controllers.companies
    
         [HttpGet("{id}")]
         [SwaggerOperation(Summary = "Getting the company by ID", Description = "Returns the company by their unique ID")]
-        [SwaggerResponse(200, "The company has been found", typeof(User))]
+        [SwaggerResponse(200, "The company has been found", typeof(Company))]
         [SwaggerResponse(404, "The company was not found")]
         public ActionResult<Company> Get(string id)
         {
