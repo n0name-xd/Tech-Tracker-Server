@@ -34,7 +34,7 @@ namespace tech_tracker_server.Controllers.companies
    
         [HttpGet("{id}")]
         [SwaggerOperation(Summary = "Getting the company by ID", Description = "Returns the company by their unique ID")]
-        [SwaggerResponse(200, "The company has been found", typeof(User))]
+        [SwaggerResponse(200, "The company has been found", typeof(Company))]
         [SwaggerResponse(404, "The company was not found")]
         public ActionResult<Company> Get(string id)
         {

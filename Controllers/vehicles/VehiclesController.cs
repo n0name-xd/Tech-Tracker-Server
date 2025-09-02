@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using tech_tracker_server.Controllers.users.DTO;
 using tech_tracker_server.Controllers.vehicles.DTO;
 using tech_tracker_server.Data;
 using tech_tracker_server.Models;
@@ -43,7 +42,6 @@ namespace tech_tracker_server.Controllers.vehicles
             return Ok(vehicle);
         }
 
-     
         [HttpPost]
         [
             SwaggerOperation(Summary = "Create a new vehicle",
@@ -78,10 +76,10 @@ namespace tech_tracker_server.Controllers.vehicles
             return Ok(newVehicle);
         }
 
-  
+
         [HttpPut("{id}")]
-        [SwaggerOperation(Summary = "Updating a vehicle by ID", Description = "Updates the data of an existing vehicle")]
-        [SwaggerResponse(200, "The vehicle has been successfully updated", typeof(User))]
+        [SwaggerOperation(Summary = "Updating the vehicle by ID", Description = "Updates the data of an existing vehicle")]
+        [SwaggerResponse(200, "The vehicle has been successfully updated", typeof(Vehicle))]
         [SwaggerResponse(404, "The vehicle was not found")]
         public ActionResult<Vehicle> Put(string id, [FromBody] string name)
         {
@@ -93,15 +91,14 @@ namespace tech_tracker_server.Controllers.vehicles
             }
 
             vehicle.Name = name;
-
             _context.SaveChanges();
 
             return Ok(vehicle);
         }
 
-        
+
         [HttpDelete("{id}")]
-        [SwaggerOperation(Summary = "Deleting a vehicle by ID", Description = "Deletes a vehicle by their unique ID")]
+        [SwaggerOperation(Summary = "Deleting the vehicle by ID", Description = "Deletes a vehicle by their unique ID")]
         [SwaggerResponse(200, "The vehicle has been successfully deleted")]
         [SwaggerResponse(404, "The vehicle was not found")]
         public IActionResult Delete(string id)
@@ -110,7 +107,7 @@ namespace tech_tracker_server.Controllers.vehicles
 
             if (vehicle == null)
             {
-                return NotFound($"Vehicle with id: ${id} not found");
+                return NotFound($"The vehicle with id: ${id} not found");
             }
 
             _context.Vehicles.Remove(vehicle);
