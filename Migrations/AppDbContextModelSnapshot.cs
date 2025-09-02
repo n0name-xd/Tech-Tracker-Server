@@ -78,10 +78,10 @@ namespace tech_tracker_server.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("CompanyId")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
@@ -89,7 +89,6 @@ namespace tech_tracker_server.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("VehicleType")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -119,7 +118,9 @@ namespace tech_tracker_server.Migrations
                 {
                     b.HasOne("tech_tracker_server.Models.Company", null)
                         .WithMany("Vehicles")
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("tech_tracker_server.Models.Company", b =>

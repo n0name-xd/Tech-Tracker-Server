@@ -23,7 +23,10 @@ namespace tech_tracker_server.Controllers.companies
         [SwaggerOperation(Summary = "Getting a list of companies", Description = "")]
         public ActionResult<List<Company>> Get()
         {
-            var companyes = _context.Companyes.Include(c => c.Owner).ToList();
+            var companyes = _context.Companyes
+                .Include(c => c.Owner)
+                .Include(c => c.Vehicles)
+                .ToList();
 
             return Ok(companyes);
         }
@@ -37,6 +40,7 @@ namespace tech_tracker_server.Controllers.companies
         {
             var company = _context.Companyes
                     .Include(companies => companies.Owner)
+                    .Include(c => c.Vehicles)
                     .FirstOrDefault(c => c.Id == id);
 
             if (company == null) 

@@ -5,7 +5,7 @@
 namespace tech_tracker_server.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate_v_001 : Migration
+    public partial class InitialCreate_v_003 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,9 +51,9 @@ namespace tech_tracker_server.Migrations
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
-                    VehicleType = table.Column<string>(type: "text", nullable: false),
-                    CompanyId = table.Column<string>(type: "text", nullable: true)
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    VehicleType = table.Column<string>(type: "text", nullable: true),
+                    CompanyId = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,7 +62,8 @@ namespace tech_tracker_server.Migrations
                         name: "FK_Vehicles_Companyes_CompanyId",
                         column: x => x.CompanyId,
                         principalTable: "Companyes",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

@@ -11,8 +11,8 @@ using tech_tracker_server.Data;
 namespace tech_tracker_server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250830134136_InitialCreate_v_0.01")]
-    partial class InitialCreate_v_001
+    [Migration("20250902181417_InitialCreate_v_0.03")]
+    partial class InitialCreate_v_003
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,10 +81,10 @@ namespace tech_tracker_server.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("CompanyId")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
@@ -92,7 +92,6 @@ namespace tech_tracker_server.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("VehicleType")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -122,7 +121,9 @@ namespace tech_tracker_server.Migrations
                 {
                     b.HasOne("tech_tracker_server.Models.Company", null)
                         .WithMany("Vehicles")
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("tech_tracker_server.Models.Company", b =>
