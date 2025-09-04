@@ -9,6 +9,8 @@ namespace tech_tracker_server.Configurations
         public void Configure(EntityTypeBuilder<Company> builder)
         {
             builder.HasKey(k => k.Id);
+
+            builder.HasOne(c => c.Owner);
         }
     }
 }
